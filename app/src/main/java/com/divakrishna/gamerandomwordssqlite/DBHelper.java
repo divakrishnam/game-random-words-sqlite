@@ -35,7 +35,13 @@ public class DBHelper extends SQLiteOpenHelper {
             +"('hewan berkaki dua?', 'bebek'),"
             +"('hewan berkaki dua lagi?', 'ayam'),"
             +"('hewan berkaki dua lagi lagi?', 'kangguru'),"
-            +"('hewan berkaki dua lagi lagi lagi?', 'komodo berdiri'),"
+            +"('hewan berkaki dua lagi lagi lagi?', 'komodo berdiri')"
+            +";";
+
+    private static final String db_insert_scores = "insert into "
+            +TABLE_SCORES+" (name, score) values"
+            +"('vania', '200'),"
+            +"('riska', '300')"
             +";";
 
     public DBHelper(Context context) {
@@ -47,6 +53,7 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(db_create_words);
         db.execSQL(db_create_scores);
         db.execSQL(db_insert_words);
+        db.execSQL(db_insert_scores);
     }
 
     @Override

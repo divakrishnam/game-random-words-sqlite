@@ -51,7 +51,7 @@ public class DBSource {
 
     public ArrayList<Scores> getAllScore(){
         ArrayList<Scores> listScore = new ArrayList<Scores>();
-        Cursor cursor = database.query(DBHelper.TABLE_SCORES, allScore, null, null, null, null, null);
+        Cursor cursor = database.query(DBHelper.TABLE_SCORES, allScore, null, null, null, null, "score DESC");
         cursor.moveToFirst();
 
         while(!cursor.isAfterLast()){
