@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
@@ -14,6 +16,8 @@ public class ScoreActivity extends AppCompatActivity {
     private RecyclerView rvScores;
     private RecyclerView.Adapter adpScores;
     private RecyclerView.LayoutManager lmScores;
+
+    private Button btnBack;
 
     private ArrayList<Scores> values;
 
@@ -28,6 +32,13 @@ public class ScoreActivity extends AppCompatActivity {
         values = dbSource.getAllScore();
 
         rvScores = findViewById(R.id.rv_scores);
+        btnBack = findViewById(R.id.btn_back);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         lmScores = new LinearLayoutManager(this);
         rvScores.setLayoutManager(lmScores);

@@ -62,18 +62,23 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.btn_next:
                 String answering = etAnswer.getText().toString().toLowerCase();
-                if (answering.equals(answer)) {
-                    Toast.makeText(this, "You are correct", Toast.LENGTH_SHORT).show();
-                    etAnswer.getText().clear();
-                    score += 10;
-                    count += 1;
-                    NextWord(count);
-                } else {
-                    Toast.makeText(this, "You are wrong", Toast.LENGTH_SHORT).show();
-                    etAnswer.getText().clear();
-                    count += 1;
-                    NextWord(count);
+                if(!answering.isEmpty()){
+                    if (answering.equals(answer)) {
+                        Toast.makeText(this, "You are correct", Toast.LENGTH_SHORT).show();
+                        etAnswer.getText().clear();
+                        score += 10;
+                        count += 1;
+                        NextWord(count);
+                    } else {
+                        Toast.makeText(this, "You are wrong", Toast.LENGTH_SHORT).show();
+                        etAnswer.getText().clear();
+                        count += 1;
+                        NextWord(count);
+                    }
+                }else {
+                    Toast.makeText(this, "Fill the answer", Toast.LENGTH_SHORT).show();
                 }
+
 
                 break;
         }
@@ -96,6 +101,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         } else {
             Intent gameOver = new Intent(this, GameOverActivity.class);
             gameOver.putExtra("score", String.valueOf(score));
+            finale();
             startActivity(gameOver);
         }
     }
@@ -137,6 +143,11 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
         viewParent.addView(textView);
+    }
+
+    public void finale(){
+        PlayActivity.this.finish();
+        dbSource.close();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.divakrishna.gamerandomwordssqlite;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -39,11 +40,22 @@ public class GameOverActivity extends AppCompatActivity implements View.OnClickL
             case R.id.btn_save:
                 break;
             case R.id.btn_high_scores:
+                Intent highScores = new Intent(this, ScoreActivity.class);
+                finale();
+                startActivity(highScores);
                 break;
             case R.id.btn_home:
+                finish();
                 break;
             case R.id.btn_play_again:
+                Intent playAgain = new Intent(this, PlayActivity.class);
+                finale();
+                startActivity(playAgain);
                 break;
         }
+    }
+
+    public void finale(){
+        GameOverActivity.this.finish();
     }
 }
