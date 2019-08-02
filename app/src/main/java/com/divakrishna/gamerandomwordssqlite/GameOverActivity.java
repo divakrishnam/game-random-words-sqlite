@@ -7,12 +7,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class GameOverActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView tvYourScore;
     private EditText etYourName;
     private Button btnSave, btnHighScores, btnHome, btnPlayAgain;
+
+    private DBSource dbSource;
+
+    private String score = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +35,16 @@ public class GameOverActivity extends AppCompatActivity implements View.OnClickL
         btnPlayAgain = findViewById(R.id.btn_play_again);
         btnPlayAgain.setOnClickListener(this);
 
-        tvYourScore.setText(getIntent().getStringExtra("score"));
+        score = getIntent().getStringExtra("score");
+
+        tvYourScore.setText(score);
+
+        dbSource = new DBSource(this);
+        dbSource.open();
+
+        if(score.equals("0")){
+            btnSave.setEnabled(false);
+        }
 
     }
 
@@ -38,6 +52,16 @@ public class GameOverActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_save:
+                String yourName = etYourName.getText().toString().toLowerCase();
+                if (!yourName.isEmpty()){
+                    dbSource.insertScore(yourName, score);
+                    Toast.makeText(this, "Success to save your name", Toast.LENGTH_SHORT).show();
+                    Intent highScores = new Intent(this, ScoreActivity.class);
+                    finale();
+                    startActivity(highScores);
+                }else {
+                    Toast.makeText(this, "Fill your name", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.btn_high_scores:
                 Intent highScores = new Intent(this, ScoreActivity.class);
@@ -57,5 +81,17 @@ public class GameOverActivity extends AppCompatActivity implements View.OnClickL
 
     public void finale(){
         GameOverActivity.this.finish();
+    }
+
+    @Override
+    protected void onResume() {
+        dbSource.open();
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        dbSource.close();
+        super.onPause();
     }
 }

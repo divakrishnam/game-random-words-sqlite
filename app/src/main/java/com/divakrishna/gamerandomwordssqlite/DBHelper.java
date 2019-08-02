@@ -40,10 +40,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
     private static final String db_insert_scores = "insert into "
             +TABLE_SCORES+" (name, score) values"
-            +"('Indah', '300'),"
-            +"('Angel', '100'),"
-            +"('Diana', '400'),"
-            +"('Vania', '200')"
+            +"('indah', '300'),"
+            +"('angel', '100'),"
+            +"('diana', '400'),"
+            +"('vania', '200')"
             +";";
 
     public DBHelper(Context context) {

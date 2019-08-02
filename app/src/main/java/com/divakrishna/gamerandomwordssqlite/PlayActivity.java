@@ -33,7 +33,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
     private String[] keys;
 
-    private String moreKeys;
+    private String moreKeys = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

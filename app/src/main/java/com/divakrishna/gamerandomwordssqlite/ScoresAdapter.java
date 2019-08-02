@@ -40,7 +40,7 @@ public class ScoresAdapter extends RecyclerView.Adapter<ScoresAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder,@SuppressWarnings("RecyclerView") final int i) {
         final String no = String.valueOf(i+1);
-        final String name = values.get(i).getName();
+        final String name = values.get(i).getName().substring(0, 1).toUpperCase() + values.get(i).getName().substring(1);
         final String score = values.get(i).getScore();
 
         viewHolder.tvNo.setText(no);
