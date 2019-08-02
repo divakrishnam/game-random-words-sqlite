@@ -25,6 +25,15 @@
         android:gravity="center"
         android:hint="Answer"/>
 
+    <LinearLayout
+        android:id="@+id/layout_parent"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal"
+        android:layout_width="360dp"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/btn_next"
         android:layout_width="wrap_content"
